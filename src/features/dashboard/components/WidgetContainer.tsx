@@ -19,6 +19,7 @@ interface WidgetContainerProps {
   isEmpty?: boolean;
   lastUpdated?: string;
   className?: string;
+  contentClassName?: string;
   hideFooter?: boolean;
   headerAction?: React.ReactNode;
 }
@@ -34,6 +35,7 @@ export default function WidgetContainer({
   isEmpty,
   lastUpdated = "Just now",
   className = "",
+  contentClassName = "p-5",
   hideFooter = false,
   headerAction,
 }: WidgetContainerProps) {
@@ -42,19 +44,19 @@ export default function WidgetContainer({
       className={`card-elevated flex flex-col h-full bg-surface border border-subtle overflow-hidden relative group ${className}`}
     >
       {/* Widget Header */}
-      <div className="px-6 py-4 border-b border-subtle flex items-center justify-between bg-surface-secondary/50">
+      <div className="shrink-0 px-4 sm:px-6 py-3 sm:py-4 border-b border-subtle flex flex-col sm:flex-row sm:items-center justify-between bg-surface-secondary/50 gap-2">
         <div className="flex items-center gap-2">
           {/* Drag Handle (react-grid-layout uses this class) */}
           <div className="cursor-grab active:cursor-grabbing text-tertiary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 drag-handle">
-            <GripHorizontal className="w-4 h-4" />
+            <GripHorizontal className="w-5 h-5 lg:w-5 lg:h-5 transition-all" />
           </div>
-          {icon && <div className="text-primary-600">{icon}</div>}
+          {icon && <div className="text-primary-600 transition-all shrink-0">{icon}</div>}
           <div>
-            <h3 className="text-[14px] font-bold text-primary leading-tight">
+            <h3 className="text-[14px] lg:text-[16px] font-bold text-primary leading-tight transition-all">
               {title}
             </h3>
             {subtitle && (
-              <p className="text-[11px] text-tertiary leading-none mt-1">
+              <p className="text-[11px] lg:text-[12px] text-tertiary leading-none mt-1 transition-all">
                 {subtitle}
               </p>
             )}
@@ -74,14 +76,14 @@ export default function WidgetContainer({
               </button>
             )}
             <button className="p-1 text-tertiary hover:text-primary hover:bg-surface-hover rounded transition-colors">
-              <MoreHorizontal className="w-4 h-4" />
+              <MoreHorizontal className="w-5 h-5" />
             </button>
           </div>
         </div>
       </div>
 
       {/* Widget Content Area */}
-      <div className="flex-1 overflow-auto relative p-5">
+      <div className={`flex-1 overflow-auto relative min-h-0 ${contentClassName}`}>
         {isLoading ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface/80 backdrop-blur-sm z-10">
             <RefreshCw className="w-6 h-6 text-primary-500 animate-spin mb-2" />
@@ -115,9 +117,9 @@ export default function WidgetContainer({
 
       {/* Widget Footer (Timestamp) */}
       {!hideFooter && (
-        <div className="px-6 pt-4 pb-5 bg-surface-secondary/30 border-t border-subtle flex justify-end">
+        <div className="shrink-0 px-4 sm:px-6 pt-3 sm:pt-4 pb-4 sm:pb-5 bg-surface-secondary/30 border-t border-subtle flex justify-end">
           <span className="text-[10px] font-medium text-tertiary flex items-center gap-1">
-            <RefreshCw className="w-3 h-3" /> Updated {lastUpdated}
+            <RefreshCw className="w-12 h-12 shrink-0" /> Updated {lastUpdated}
           </span>
         </div>
       )}

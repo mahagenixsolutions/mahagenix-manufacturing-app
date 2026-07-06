@@ -164,7 +164,7 @@ function WorkOrderDetail({ wo, onClose }: { wo: WorkOrder; onClose: () => void }
                 <div key={i} className="flex items-start gap-3">
                   <div className="flex flex-col items-center">
                     <div
-                      className="w-3 h-3 rounded-full border-2 shrink-0"
+                      className="w-4 h-4 rounded-full border-2 shrink-0"
                       style={{
                         borderColor: item.status === 'completed' ? 'var(--color-success-500)' : item.status === 'active' ? 'var(--color-primary-500)' : 'var(--border-default)',
                         background: item.status === 'completed' ? 'var(--color-success-500)' : 'transparent',
@@ -205,19 +205,19 @@ export default function WorkOrdersPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Work Orders</h1>
-          <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+          <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Work Orders</h1>
+          <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>
             {workOrders.length} total work orders · {workOrders.filter(w => w.status === 'in-progress').length} in progress
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg border text-[12px] font-medium cursor-pointer" style={{ borderColor: 'var(--border-default)', color: 'var(--text-secondary)' }}>
-            <Download className="w-3.5 h-3.5" /> Export
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+          <button className="flex items-center justify-center shrink-0 gap-1.5 px-3 py-2 rounded-lg border text-[12px] font-medium cursor-pointer" style={{ borderColor: 'var(--border-default)', color: 'var(--text-secondary)' }}>
+            <Download className="w-4 h-4" /> Export
           </button>
-          <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12px] font-medium text-white bg-primary-600 cursor-pointer">
-            <Plus className="w-3.5 h-3.5" /> New Work Order
+          <button className="flex items-center justify-center shrink-0 gap-1.5 px-3 py-2 rounded-lg text-[12px] font-medium text-white bg-primary-600 cursor-pointer">
+            <Plus className="w-4 h-4" /> New Work Order
           </button>
         </div>
       </div>
@@ -225,23 +225,23 @@ export default function WorkOrdersPage() {
       {/* Filters */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="relative">
-          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style={{ color: 'var(--text-tertiary)' }} />
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <input
             type="text"
             placeholder="Search work orders..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] w-56"
+            className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] w-56 shrink-0 min-w-[160px]"
             style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
           />
         </div>
 
         <div className="relative">
-          <Filter className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style={{ color: 'var(--text-tertiary)' }} />
+          <Filter className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as WorkOrderStatus | 'all')}
-            className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none"
+            className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none shrink-0 min-w-[130px]"
             style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
           >
             <option value="all">All Status</option>
@@ -253,18 +253,21 @@ export default function WorkOrdersPage() {
           </select>
         </div>
 
-        <select
-          value={priorityFilter}
-          onChange={(e) => setPriorityFilter(e.target.value as Priority | 'all')}
-          className="px-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none"
-          style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
-        >
-          <option value="all">All Priority</option>
-          <option value="critical">Critical</option>
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
+        <div className="relative">
+          <Filter className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
+          <select
+            value={priorityFilter}
+            onChange={(e) => setPriorityFilter(e.target.value as Priority | 'all')}
+            className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none shrink-0 min-w-[130px]"
+            style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
+          >
+            <option value="all">All Priority</option>
+            <option value="critical">Critical</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
 
         <span className="text-[12px] ml-auto" style={{ color: 'var(--text-tertiary)' }}>
           Showing {filtered.length} of {workOrders.length}
@@ -273,7 +276,7 @@ export default function WorkOrdersPage() {
 
       {/* Table */}
       <div className="card-elevated overflow-hidden">
-        <div className="overflow-x-auto">
+        <div className="table-container">
           <table className="enterprise-table">
             <thead>
               <tr>
@@ -294,10 +297,10 @@ export default function WorkOrdersPage() {
             <tbody>
               {filtered.map((wo) => (
                 <tr key={wo.id} className="cursor-pointer" onClick={() => setSelectedWO(wo)}>
-                  <td><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{wo.id}</span></td>
-                  <td><span className="font-medium text-[12px]">{wo.product}</span></td>
-                  <td><StatusBadge status={wo.status} /></td>
-                  <td>
+                  <td data-label="WO #"><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{wo.id}</span></td>
+                  <td data-label="Product"><span className="font-medium text-[12px]">{wo.product}</span></td>
+                  <td data-label="Status"><StatusBadge status={wo.status} /></td>
+                  <td data-label="Progress">
                     <div className="flex items-center gap-2">
                       <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-surface-secondary)' }}>
                         <div
@@ -311,13 +314,13 @@ export default function WorkOrdersPage() {
                       <span className="text-[11px] font-medium" style={{ color: 'var(--text-secondary)' }}>{wo.progress}%</span>
                     </div>
                   </td>
-                  <td><StatusBadge status={wo.priority} /></td>
-                  <td className="text-[12px]">{wo.line}</td>
-                  <td className="text-[12px] font-mono">{wo.machine}</td>
-                  <td className="text-[12px]">{wo.operator}</td>
-                  <td className="text-[12px]">{wo.supervisor}</td>
-                  <td className="text-[12px] font-mono">{wo.completed.toLocaleString()}/{wo.quantity.toLocaleString()}</td>
-                  <td>
+                  <td data-label="Priority"><StatusBadge status={wo.priority} /></td>
+                  <td data-label="Line" className="text-[12px]">{wo.line}</td>
+                  <td data-label="Machine" className="text-[12px] font-mono">{wo.machine}</td>
+                  <td data-label="Operator" className="text-[12px]">{wo.operator}</td>
+                  <td data-label="Supervisor" className="text-[12px]">{wo.supervisor}</td>
+                  <td data-label="Qty" className="text-[12px] font-mono">{wo.completed.toLocaleString()}/{wo.quantity.toLocaleString()}</td>
+                  <td data-label="Deadline">
                     <span
                       className="text-[12px] font-mono"
                       style={{
@@ -327,7 +330,7 @@ export default function WorkOrdersPage() {
                       {wo.deadline}
                     </span>
                   </td>
-                  <td><ChevronRight className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} /></td>
+                  <td data-label="Action"><ChevronRight className="w-5 h-5" style={{ color: 'var(--text-tertiary)' }} /></td>
                 </tr>
               ))}
             </tbody>

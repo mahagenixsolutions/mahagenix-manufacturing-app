@@ -34,9 +34,9 @@ export default function ProductionLeaderboards() {
                 <div className="text-[9px] text-tertiary uppercase">{leader.metric}</div>
               </div>
               {leader.trend === 'up' ? (
-                <TrendingUp className="w-4 h-4 text-success-500" />
+                <TrendingUp className="w-5 h-5 text-success-500" />
               ) : (
-                <TrendingDown className="w-4 h-4 text-danger-500" />
+                <TrendingDown className="w-5 h-5 text-danger-500" />
               )}
             </div>
           </div>

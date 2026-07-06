@@ -2,15 +2,18 @@
 // ForgeMES — App Store (Zustand)
 // ============================================================
 
-import { create } from 'zustand';
-import type { Factory, Notification } from '@/types';
-import { factories, notifications as mockNotifications } from '@/mock/data';
+import { create } from "zustand";
+import type { Factory, Notification } from "@/types";
+import { factories, notifications as mockNotifications } from "@/mock/data";
 
 interface AppState {
   // Sidebar
   sidebarCollapsed: boolean;
   toggleSidebar: () => void;
   setSidebarCollapsed: (collapsed: boolean) => void;
+  mobileSidebarOpen: boolean;
+  toggleMobileSidebar: () => void;
+  setMobileSidebarOpen: (open: boolean) => void;
 
   // Dark mode
   darkMode: boolean;
@@ -43,6 +46,10 @@ export const useAppStore = create<AppState>((set) => ({
   sidebarCollapsed: false,
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
   setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
+  mobileSidebarOpen: false,
+  toggleMobileSidebar: () =>
+    set((s) => ({ mobileSidebarOpen: !s.mobileSidebarOpen })),
+  setMobileSidebarOpen: (open) => set({ mobileSidebarOpen: open }),
 
   // Dark mode
   darkMode: false,
@@ -50,11 +57,11 @@ export const useAppStore = create<AppState>((set) => ({
     set((s) => {
       const next = !s.darkMode;
       if (next) {
-        document.documentElement.classList.add('dark');
+        document.documentElement.classList.add("dark");
       } else {
-        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.remove("dark");
       }
-      localStorage.setItem('forgemes-dark-mode', JSON.stringify(next));
+      localStorage.setItem("forgemes-dark-mode", JSON.stringify(next));
       return { darkMode: next };
     }),
 
@@ -71,11 +78,17 @@ export const useAppStore = create<AppState>((set) => ({
   notifications: mockNotifications,
   unreadCount: mockNotifications.filter((n) => !n.read).length,
   notificationPanelOpen: false,
-  toggleNotificationPanel: () => set((s) => ({ notificationPanelOpen: !s.notificationPanelOpen })),
+  toggleNotificationPanel: () =>
+    set((s) => ({ notificationPanelOpen: !s.notificationPanelOpen })),
   markAsRead: (id) =>
     set((s) => {
-      const updated = s.notifications.map((n) => (n.id === id ? { ...n, read: true } : n));
-      return { notifications: updated, unreadCount: updated.filter((n) => !n.read).length };
+      const updated = s.notifications.map((n) =>
+        n.id === id ? { ...n, read: true } : n,
+      );
+      return {
+        notifications: updated,
+        unreadCount: updated.filter((n) => !n.read).length,
+      };
     }),
   markAllAsRead: () =>
     set((s) => ({
@@ -84,6 +97,6 @@ export const useAppStore = create<AppState>((set) => ({
     })),
 
   // Search
-  searchQuery: '',
+  searchQuery: "",
   setSearchQuery: (query) => set({ searchQuery: query }),
 }));

@@ -19,7 +19,7 @@ const shiftColors = {
 
 export default function ShiftSummary() {
   return (
-    <div className="grid grid-cols-3 gap-4 h-full">
+    <div className="flex flex-col gap-3 h-full">
       {shifts.map((shift) => {
         const Icon = shiftIcons[shift.type];
         const colors = shiftColors[shift.type];
@@ -27,61 +27,63 @@ export default function ShiftSummary() {
         return (
           <div
             key={shift.type}
-            className={`rounded-lg border p-4 relative overflow-hidden ${colors.border} ${
-              shift.isActive ? 'ring-2 ring-primary-500/30' : ''
+            className={`rounded-lg border p-3 flex-1 flex flex-col justify-center relative overflow-hidden transition-colors ${colors.border} ${
+              shift.isActive ? 'ring-1 ring-primary-500/30' : ''
             }`}
             style={{ background: shift.isActive ? 'var(--color-primary-50)' : 'var(--bg-surface)' }}
           >
-            {/* Active badge */}
-            {shift.isActive && (
-              <div className="absolute top-2 right-2 flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-primary-600 text-white text-[9px] font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                ACTIVE
-              </div>
-            )}
-
             {/* Header */}
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className={`w-7 h-7 rounded-md flex items-center justify-center ${colors.bg}`}
-              >
-                <Icon className="w-3.5 h-3.5" style={{ color: colors.accent }} />
-              </div>
-              <div>
-                <p className="text-[12px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                  {shift.label}
-                </p>
-                <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-                  {shift.startTime} — {shift.endTime}
-                </p>
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2.5">
+                <div
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${colors.bg}`}
+                >
+                  <Icon className="w-5 h-5" style={{ color: colors.accent }} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[13px] font-semibold leading-tight" style={{ color: 'var(--text-primary)' }}>
+                      {shift.label}
+                    </p>
+                    {shift.isActive && (
+                      <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-primary-600 text-white text-[9px] font-bold tracking-wider">
+                        <span className="w-1 h-1 rounded-full bg-white animate-pulse" />
+                        ACTIVE
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[11px] mt-0.5 font-medium" style={{ color: 'var(--text-tertiary)' }}>
+                    {shift.startTime} — {shift.endTime}
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="flex items-center gap-1.5" style={{ color: 'var(--text-secondary)' }}>
-                  <CheckCircle2 className="w-3 h-3 text-success-500" /> Completed
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-auto">
+              <div className="flex flex-col gap-1 p-1.5 rounded-md bg-surface-secondary/50 border border-subtle">
+                <span className="flex items-center justify-center text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  <CheckCircle2 className="w-4 h-4 text-success-500 mr-1" /> Done
                 </span>
-                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{shift.completed}</span>
+                <span className="text-[13px] font-bold text-center" style={{ color: 'var(--text-primary)' }}>{shift.completed}</span>
               </div>
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="flex items-center gap-1.5" style={{ color: 'var(--text-secondary)' }}>
-                  <Play className="w-3 h-3 text-primary-500" /> Running
+              <div className="flex flex-col gap-1 p-1.5 rounded-md bg-surface-secondary/50 border border-subtle">
+                <span className="flex items-center justify-center text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  <Play className="w-4 h-4 text-primary-500 mr-1" /> Run
                 </span>
-                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{shift.running}</span>
+                <span className="text-[13px] font-bold text-center" style={{ color: 'var(--text-primary)' }}>{shift.running}</span>
               </div>
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="flex items-center gap-1.5" style={{ color: 'var(--text-secondary)' }}>
-                  <AlertTriangle className="w-3 h-3 text-danger-500" /> Delayed
+              <div className="flex flex-col gap-1 p-1.5 rounded-md bg-surface-secondary/50 border border-subtle">
+                <span className="flex items-center justify-center text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  <AlertTriangle className="w-4 h-4 text-danger-500 mr-1" /> Delay
                 </span>
-                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{shift.delayed}</span>
+                <span className="text-[13px] font-bold text-center" style={{ color: 'var(--text-primary)' }}>{shift.delayed}</span>
               </div>
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="flex items-center gap-1.5" style={{ color: 'var(--text-secondary)' }}>
-                  <Users className="w-3 h-3" style={{ color: 'var(--text-tertiary)' }} /> Operators
+              <div className="flex flex-col gap-1 p-1.5 rounded-md bg-surface-secondary/50 border border-subtle">
+                <span className="flex items-center justify-center text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  <Users className="w-4 h-4 text-tertiary mr-1" /> Crew
                 </span>
-                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{shift.operators}</span>
+                <span className="text-[13px] font-bold text-center" style={{ color: 'var(--text-primary)' }}>{shift.operators}</span>
               </div>
             </div>
           </div>

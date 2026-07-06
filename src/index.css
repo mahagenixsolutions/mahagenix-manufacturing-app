@@ -1,12 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
-@import 'react-grid-layout/css/styles.css';
-@import 'react-resizable/css/styles.css';
+@import "react-grid-layout/css/styles.css";
+@import "react-resizable/css/styles.css";
 
 /* ============================================================
    ForgeMES — Enterprise Design System
    ============================================================ */
 
 @theme {
+  /* --- Breakpoints --- */
+  --breakpoint-xs: 320px;
+  --breakpoint-iphone: 375px;
+  --breakpoint-android: 390px;
+  --breakpoint-ph-lg: 414px;
+  --breakpoint-ph-xl: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-ipad: 834px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1600px;
+  --breakpoint-4xl: 1920px;
+  --breakpoint-5xl: 2560px;
+
   /* --- Color Palette --- */
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
@@ -60,13 +77,26 @@
   --color-surface-950: #020617;
 
   /* --- Typography --- */
-  --font-sans: 'Poppins', 'Century Gothic', 'CenturyGothic', 'AppleGothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-sans:
+    "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
 
   /* --- Spacing --- */
-  --spacing-sidebar: 260px;
+  --spacing-sidebar: 280px; /* Updated per requirements */
   --spacing-sidebar-collapsed: 72px;
   --spacing-topnav: 64px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
 
   /* --- Border Radius --- */
   --radius-sm: 6px;
@@ -76,9 +106,12 @@
 
   /* --- Shadows --- */
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
-  --shadow-dropdown: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
-  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover:
+    0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-dropdown:
+    0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+  --shadow-modal:
+    0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
 
   /* --- Transitions --- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -102,13 +135,33 @@
   --bg-surface-hover: var(--color-surface-100);
   --bg-sidebar: #ffffff;
   --bg-topnav: #ffffff;
-  --border-default: var(--color-surface-200);
-  --border-subtle: var(--color-surface-100);
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
   --text-primary: var(--color-surface-900);
   --text-secondary: var(--color-surface-500);
   --text-tertiary: var(--color-surface-400);
   --text-inverse: #ffffff;
   color-scheme: light;
+
+  /* Responsive variables */
+  --card-padding: 16px;
+  --card-radius: 20px;
+  --main-padding: 20px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --card-padding: 20px;
+    --card-radius: 20px;
+    --main-padding: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --card-padding: 24px;
+    --card-radius: 20px;
+  }
 }
 
 .dark {
@@ -118,8 +171,8 @@
   --bg-surface-hover: var(--color-surface-800);
   --bg-sidebar: var(--color-surface-900);
   --bg-topnav: var(--color-surface-900);
-  --border-default: var(--color-surface-700);
-  --border-subtle: var(--color-surface-800);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
   --text-primary: var(--color-surface-50);
   --text-secondary: var(--color-surface-400);
   --text-tertiary: var(--color-surface-500);
@@ -138,6 +191,12 @@
     box-sizing: border-box;
   }
 
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   html {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -150,7 +209,115 @@
     color: var(--text-primary);
     line-height: 1.5;
     font-size: 14px;
-    overflow: hidden;
+  }
+
+  /* Typography Scale */
+  h1,
+  .hero-text {
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  h2,
+  .section-text {
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  h3,
+  .card-title {
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  p,
+  .body-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 768px) {
+    h1,
+    .hero-text {
+      font-size: 42px;
+    }
+    h2,
+    .section-text {
+      font-size: 28px;
+    }
+    h3,
+    .card-title {
+      font-size: 18px;
+    }
+    p,
+    .body-text {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1,
+    .hero-text {
+      font-size: 56px;
+    }
+    h2,
+    .section-text {
+      font-size: 34px;
+    }
+    h3,
+    .card-title {
+      font-size: 20px;
+    }
+    p,
+    .body-text {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    h1,
+    .hero-text {
+      font-size: 72px;
+    }
+    h2,
+    .section-text {
+      font-size: 42px;
+    }
+    h3,
+    .card-title {
+      font-size: 22px;
+    }
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  /* Responsive Inputs & Buttons */
+  input,
+  select,
+  textarea {
+    width: 100%;
+  }
+
+  button {
+    touch-action: manipulation;
+  }
+
+  @media (max-width: 767px) {
+    button:not(.icon-only) {
+      width: 100%;
+    }
   }
 
   /* --- Scrollbar --- */
@@ -199,43 +366,91 @@
    ============================================================ */
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes slide-in-up {
-  from { transform: translateY(8px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes scale-in {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes pulse-subtle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes count-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============================================================
@@ -253,20 +468,58 @@
     background: rgba(15, 23, 42, 0.7);
   }
 
+  .border-subtle {
+    border-color: var(--border-subtle);
+  }
+
+  .border-default {
+    border-color: var(--border-default);
+  }
+
   .card-elevated {
     background: var(--bg-surface);
     border: 1px solid var(--border-default);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+    box-shadow:
+      0 1px 2px 0 rgba(0, 0, 0, 0.03),
+      0 4px 12px rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+    transition:
+      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s ease;
   }
 
   .card-elevated:hover {
-    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+    border-color: var(--color-primary-200);
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.05),
+      0 8px 16px -8px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .dark .card-elevated {
+    box-shadow:
+      0 1px 2px 0 rgba(0, 0, 0, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .dark .card-elevated:hover {
+    border-color: var(--color-primary-800);
+    box-shadow:
+      0 20px 30px -10px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-400));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-600),
+      var(--color-primary-400)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -294,10 +547,17 @@
    ============================================================ */
 
 /* --- Enterprise Table --- */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .enterprise-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  min-width: max-content; /* Ensure table doesn't squish */
 }
 
 .enterprise-table thead th {
@@ -331,4 +591,53 @@
 
 .enterprise-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* Mobile responsive table -> stacked cards */
+@media (max-width: 767px) {
+  .enterprise-table {
+    min-width: 100%;
+  }
+
+  .enterprise-table thead {
+    display: none; /* Hide table headers */
+  }
+
+  .enterprise-table tbody tr {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    overflow: hidden;
+  }
+
+  .enterprise-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .enterprise-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .enterprise-table tbody td:last-child {
+    border-bottom: none;
+  }
+
+  /* The magic pseudo element for mobile table headers */
+  .enterprise-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    margin-right: 16px;
+    flex-shrink: 0;
+    text-align: left;
+  }
 }

@@ -20,7 +20,7 @@ export default function TodaySchedule() {
           <div className="pl-1">
             <div className="text-[12px] font-bold text-primary">{item.time}</div>
             <div className="flex items-center gap-2 mt-1">
-              <item.icon className={`w-3.5 h-3.5 ${item.color}`} />
+              <item.icon className={`w-3.5 h-3.5 shrink-0 ${item.color}`} />
               <span className="text-[11px] font-medium text-secondary">{item.event}</span>
             </div>
           </div>

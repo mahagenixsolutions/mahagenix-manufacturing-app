@@ -64,17 +64,17 @@ function MachineCard({ machine, onSelect }: { machine: Machine; onSelect: (m: Ma
       {/* Metrics grid */}
       <div className="grid grid-cols-3 gap-2 mb-3">
         <div className="text-center p-1.5 rounded-md" style={{ background: 'var(--bg-surface-secondary)' }}>
-          <Thermometer className="w-3 h-3 mx-auto mb-0.5" style={{ color: 'var(--text-tertiary)' }} />
+          <Thermometer className="w-4 h-4 mx-auto mb-0.5" style={{ color: 'var(--text-tertiary)' }} />
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Temp</p>
           <p className="text-[12px] font-bold" style={{ color: 'var(--text-primary)' }}>{machine.temperature}°C</p>
         </div>
         <div className="text-center p-1.5 rounded-md" style={{ background: 'var(--bg-surface-secondary)' }}>
-          <Gauge className="w-3 h-3 mx-auto mb-0.5" style={{ color: 'var(--text-tertiary)' }} />
+          <Gauge className="w-4 h-4 mx-auto mb-0.5" style={{ color: 'var(--text-tertiary)' }} />
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Speed</p>
           <p className="text-[12px] font-bold" style={{ color: 'var(--text-primary)' }}>{machine.speed > 0 ? machine.speed.toLocaleString() : '—'}</p>
         </div>
         <div className="text-center p-1.5 rounded-md" style={{ background: 'var(--bg-surface-secondary)' }}>
-          <Zap className="w-3 h-3 mx-auto mb-0.5" style={{ color: 'var(--text-tertiary)' }} />
+          <Zap className="w-4 h-4 mx-auto mb-0.5" style={{ color: 'var(--text-tertiary)' }} />
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Power</p>
           <p className="text-[12px] font-bold" style={{ color: 'var(--text-primary)' }}>{machine.power} kW</p>
         </div>
@@ -105,13 +105,13 @@ function MachineCard({ machine, onSelect }: { machine: Machine; onSelect: (m: Ma
       {/* Footer: operator + runtime */}
       <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: 'var(--border-subtle)' }}>
         <div className="flex items-center gap-1.5">
-          <User className="w-3 h-3" style={{ color: 'var(--text-tertiary)' }} />
+          <User className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>
             {machine.operator || 'Unassigned'}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
-          <Clock className="w-3 h-3" style={{ color: 'var(--text-tertiary)' }} />
+          <Clock className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>
             {Math.floor(machine.runtime / 60)}h {machine.runtime % 60}m
           </span>
@@ -171,8 +171,8 @@ function MachineDetailDrawer({ machine, onClose }: { machine: Machine; onClose: 
           <div className="flex items-center gap-5 p-4 rounded-lg" style={{ background: 'var(--bg-surface-secondary)' }}>
             <ProgressRing value={machine.oee} size={72} strokeWidth={6} color={statusColor} />
             <div>
-              <p className="text-[11px] font-medium" style={{ color: 'var(--text-tertiary)' }}>Overall Equipment Effectiveness</p>
-              <p className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>{machine.oee}%</p>
+              <p className="text-[11px] lg:text-[13px] font-medium transition-all" style={{ color: 'var(--text-tertiary)' }}>Overall Equipment Effectiveness</p>
+              <p className="text-2xl lg:text-3xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>{machine.oee}%</p>
             </div>
           </div>
 
@@ -192,10 +192,10 @@ function MachineDetailDrawer({ machine, onClose }: { machine: Machine; onClose: 
               ].map((metric, i) => (
                 <div key={i} className="p-3 rounded-lg border" style={{ borderColor: 'var(--border-subtle)', background: 'var(--bg-surface)' }}>
                   <div className="flex items-center gap-1.5 mb-1">
-                    <metric.icon className="w-3 h-3" style={{ color: metric.warn ? 'var(--color-danger-500)' : 'var(--text-tertiary)' }} />
-                    <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{metric.label}</span>
+                    <metric.icon className="w-4 h-4 lg:w-4 lg:h-4 transition-all" style={{ color: metric.warn ? 'var(--color-danger-500)' : 'var(--text-tertiary)' }} />
+                    <span className="text-[10px] lg:text-[12px] transition-all" style={{ color: 'var(--text-tertiary)' }}>{metric.label}</span>
                   </div>
-                  <p className="text-[14px] font-bold" style={{ color: metric.warn ? 'var(--color-danger-600)' : 'var(--text-primary)' }}>
+                  <p className="text-[14px] lg:text-[16px] font-bold transition-all" style={{ color: metric.warn ? 'var(--color-danger-600)' : 'var(--text-primary)' }}>
                     {metric.value}
                   </p>
                 </div>
@@ -290,11 +290,11 @@ export default function MachinesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Machine Monitoring</h1>
-          <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-            Real-time status of {machines.length} machines across {lines.length} production lines
+          <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Machine Monitoring</h1>
+          <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>
+            Real-time status and telemetry for all equipment
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -307,7 +307,7 @@ export default function MachinesPage() {
                 color: viewMode === 'grid' ? '#fff' : 'var(--text-tertiary)',
               }}
             >
-              <LayoutGrid className="w-4 h-4" />
+              <LayoutGrid className="w-5 h-5" />
             </button>
             <button
               onClick={() => setViewMode('list')}
@@ -317,7 +317,7 @@ export default function MachinesPage() {
                 color: viewMode === 'list' ? '#fff' : 'var(--text-tertiary)',
               }}
             >
-              <List className="w-4 h-4" />
+              <List className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -355,7 +355,7 @@ export default function MachinesPage() {
             <select
               value={lineFilter}
               onChange={(e) => setLineFilter(e.target.value)}
-              className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none"
+              className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none shrink-0 min-w-[130px]"
               style={{
                 background: 'var(--bg-surface)',
                 borderColor: 'var(--border-default)',
@@ -377,7 +377,7 @@ export default function MachinesPage() {
               placeholder="Search machines..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] w-48"
+              className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] w-48 shrink-0 min-w-[140px]"
               style={{
                 background: 'var(--bg-surface)',
                 borderColor: 'var(--border-default)',
@@ -397,7 +397,7 @@ export default function MachinesPage() {
         </div>
       ) : (
         /* List View */
-        <div className="card-elevated overflow-hidden">
+        <div className="card-elevated overflow-hidden table-container">
           <table className="enterprise-table">
             <thead>
               <tr>
@@ -418,21 +418,21 @@ export default function MachinesPage() {
             <tbody>
               {filtered.map((m) => (
                 <tr key={m.id} className="cursor-pointer" onClick={() => setSelectedMachine(m)}>
-                  <td>
+                  <td data-label="Machine">
                     <div>
                       <span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{m.id}</span>
                       <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{m.name}</p>
                     </div>
                   </td>
-                  <td className="text-[12px]">{m.type}</td>
-                  <td className="text-[12px]">{m.line}</td>
-                  <td><StatusBadge status={m.status} /></td>
-                  <td className="text-[12px] font-mono">{m.temperature}°C</td>
-                  <td className="text-[12px] font-mono">{m.speed > 0 ? m.speed.toLocaleString() : '—'}</td>
-                  <td className="text-[12px] font-mono">{m.power} kW</td>
-                  <td className="text-[12px] font-bold">{m.oee}%</td>
-                  <td className="text-[12px] font-mono" style={{ color: 'var(--color-primary-600)' }}>{m.currentTask || '—'}</td>
-                  <td>
+                  <td data-label="Type" className="text-[12px]">{m.type}</td>
+                  <td data-label="Line" className="text-[12px]">{m.line}</td>
+                  <td data-label="Status"><StatusBadge status={m.status} /></td>
+                  <td data-label="Temp" className="text-[12px] font-mono">{m.temperature}°C</td>
+                  <td data-label="Speed" className="text-[12px] font-mono">{m.speed > 0 ? m.speed.toLocaleString() : '—'}</td>
+                  <td data-label="Power" className="text-[12px] font-mono">{m.power} kW</td>
+                  <td data-label="OEE" className="text-[12px] font-bold">{m.oee}%</td>
+                  <td data-label="Task" className="text-[12px] font-mono" style={{ color: 'var(--color-primary-600)' }}>{m.currentTask || '—'}</td>
+                  <td data-label="Progress">
                     {m.progress > 0 && (
                       <div className="flex items-center gap-1.5">
                         <div className="w-16 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-surface-secondary)' }}>
@@ -442,8 +442,8 @@ export default function MachinesPage() {
                       </div>
                     )}
                   </td>
-                  <td className="text-[12px]">{m.operator || '—'}</td>
-                  <td><ChevronRight className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} /></td>
+                  <td data-label="Operator" className="text-[12px]">{m.operator || '—'}</td>
+                  <td data-label="Action"><ChevronRight className="w-5 h-5" style={{ color: 'var(--text-tertiary)' }} /></td>
                 </tr>
               ))}
             </tbody>

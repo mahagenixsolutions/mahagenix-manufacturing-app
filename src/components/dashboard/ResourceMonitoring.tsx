@@ -17,7 +17,7 @@ export default function ResourceMonitoring() {
           <div key={idx} className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <res.icon className={`w-4 h-4 ${res.color}`} />
+                <res.icon className={`w-5 h-5 shrink-0 lg:w-5 lg:h-5 transition-all ${res.color}`} />
                 <span className="text-[12px] font-semibold text-secondary">{res.label}</span>
               </div>
               <span className="text-[12px] font-bold text-primary pr-3">

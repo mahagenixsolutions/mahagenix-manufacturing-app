@@ -58,11 +58,11 @@ function KanbanCard({ wo }: { wo: WorkOrder }) {
       {/* Meta */}
       <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: 'var(--border-subtle)' }}>
         <div className="flex items-center gap-1">
-          <User className="w-3 h-3" style={{ color: 'var(--text-tertiary)' }} />
+          <User className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>{wo.operator}</span>
         </div>
         <div className="flex items-center gap-1">
-          <Clock className="w-3 h-3" style={{ color: 'var(--text-tertiary)' }} />
+          <Clock className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
           <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>{wo.deadline}</span>
         </div>
       </div>
@@ -204,10 +204,10 @@ export default function ProductionPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Production</h1>
-          <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+          <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Production</h1>
+          <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>
             Production schedule, queue & job tracking
           </p>
         </div>
@@ -231,11 +231,11 @@ export default function ProductionPage() {
 
       {/* Kanban View */}
       {viewMode === 'kanban' && (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="flex overflow-x-auto pb-4 snap-x snap-mandatory gap-4 -mx-5 px-5 sm:mx-0 sm:px-0 sm:overflow-visible sm:grid sm:grid-cols-4">
           {kanbanColumns.map((col) => {
             const colOrders = workOrders.filter((wo) => wo.status === col.key);
             return (
-              <div key={col.key}>
+              <div key={col.key} className="min-w-[280px] sm:min-w-0 flex-1 snap-start">
                 <div className="flex items-center justify-between mb-3 px-1">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ background: col.color }} />
@@ -274,7 +274,7 @@ export default function ProductionPage() {
 
       {/* List View */}
       {viewMode === 'list' && (
-        <div className="card-elevated overflow-hidden">
+        <div className="card-elevated overflow-hidden table-container">
           <table className="enterprise-table">
             <thead>
               <tr>
@@ -292,11 +292,11 @@ export default function ProductionPage() {
             <tbody>
               {workOrders.map((wo) => (
                 <tr key={wo.id} className="cursor-pointer">
-                  <td><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{wo.id}</span></td>
-                  <td className="text-[12px] font-medium">{wo.product}</td>
-                  <td><StatusBadge status={wo.status} /></td>
-                  <td><StatusBadge status={wo.priority} /></td>
-                  <td>
+                  <td data-label="WO #"><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{wo.id}</span></td>
+                  <td data-label="Product" className="text-[12px] font-medium">{wo.product}</td>
+                  <td data-label="Status"><StatusBadge status={wo.status} /></td>
+                  <td data-label="Priority"><StatusBadge status={wo.priority} /></td>
+                  <td data-label="Progress">
                     <div className="flex items-center gap-2">
                       <div className="w-16 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-surface-secondary)' }}>
                         <div className="h-full rounded-full bg-primary-500" style={{ width: `${wo.progress}%` }} />
@@ -304,10 +304,10 @@ export default function ProductionPage() {
                       <span className="text-[10px]">{wo.progress}%</span>
                     </div>
                   </td>
-                  <td className="text-[12px]">{wo.line}</td>
-                  <td className="text-[12px]">{wo.operator}</td>
-                  <td className="text-[12px] font-mono">{wo.deadline}</td>
-                  <td><ChevronRight className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} /></td>
+                  <td data-label="Line" className="text-[12px]">{wo.line}</td>
+                  <td data-label="Operator" className="text-[12px]">{wo.operator}</td>
+                  <td data-label="Deadline" className="text-[12px] font-mono">{wo.deadline}</td>
+                  <td data-label="Action"><ChevronRight className="w-5 h-5" style={{ color: 'var(--text-tertiary)' }} /></td>
                 </tr>
               ))}
             </tbody>

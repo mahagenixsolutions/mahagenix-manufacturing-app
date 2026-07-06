@@ -118,7 +118,7 @@ export default function EmployeeOnboardingWizard({ open, onOpenChange }: Props) 
                 idx === currentStep ? 'bg-primary-600 text-white shadow-md shadow-primary-500/20' :
                 'bg-surface-secondary text-tertiary border border-[var(--border-default)]'
               }`}>
-                {idx < currentStep ? <CheckCircle2 className="w-4 h-4" /> : idx + 1}
+                {idx < currentStep ? <CheckCircle2 className="w-5 h-5" /> : idx + 1}
               </div>
               <span className={`text-[11px] font-semibold ${idx <= currentStep ? 'text-primary' : 'text-tertiary'}`}>
                 {step}
@@ -249,7 +249,7 @@ export default function EmployeeOnboardingWizard({ open, onOpenChange }: Props) 
                 disabled={currentStep === 0}
                 className="px-4 py-2 rounded-lg text-[13px] font-medium text-secondary hover:bg-surface-secondary disabled:opacity-50 transition-colors flex items-center gap-1 cursor-pointer"
               >
-                <ChevronLeft className="w-4 h-4" /> Back
+                <ChevronLeft className="w-5 h-5" /> Back
               </button>
               
               {currentStep < STEPS.length - 1 ? (
@@ -258,7 +258,7 @@ export default function EmployeeOnboardingWizard({ open, onOpenChange }: Props) 
                   onClick={nextStep}
                   className="px-4 py-2 rounded-lg text-[13px] font-medium bg-primary-600 text-white hover:bg-primary-700 transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  Next <ChevronRight className="w-4 h-4" />
+                  Next <ChevronRight className="w-5 h-5" />
                 </button>
               ) : (
                 <button

@@ -50,8 +50,8 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Factory Analytics</h1>
-          <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+          <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Factory Analytics</h1>
+          <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>
             Deep dive into production metrics, OEE, and utilization
           </p>
         </div>
@@ -75,15 +75,15 @@ export default function AnalyticsPage() {
         ].map((kpi, i) => (
           <div key={i} className="card-elevated p-5">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-500/10 flex items-center justify-center">
-                <kpi.icon className="w-5 h-5 text-primary-600" />
+              <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-primary-50 dark:bg-primary-500/10 flex items-center justify-center transition-all">
+                <kpi.icon className="w-5 h-5 lg:w-6 lg:h-6 text-primary-600 transition-all" />
               </div>
-              <span className={`text-[12px] font-bold ${kpi.trend.startsWith('+') ? 'text-success-600' : 'text-danger-600'}`}>
+              <span className={`text-[12px] lg:text-[14px] font-bold transition-all ${kpi.trend.startsWith('+') ? 'text-success-600' : 'text-danger-600'}`}>
                 {kpi.trend}
               </span>
             </div>
-            <p className="text-[12px] font-medium mb-1" style={{ color: 'var(--text-tertiary)' }}>{kpi.label}</p>
-            <p className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>{kpi.value}</p>
+            <p className="text-[12px] lg:text-[13px] font-medium mb-1 transition-all" style={{ color: 'var(--text-tertiary)' }}>{kpi.label}</p>
+            <p className="text-2xl lg:text-3xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>{kpi.value}</p>
           </div>
         ))}
       </div>
@@ -96,7 +96,7 @@ export default function AnalyticsPage() {
               <h3 className="text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>OEE Trend</h3>
               <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>Overall Equipment Effectiveness over 6 months</p>
             </div>
-            <BarChart3 className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
+            <BarChart3 className="w-5 h-5" style={{ color: 'var(--text-tertiary)' }} />
           </div>
           <ReactECharts option={oeeTrendOption} style={{ height: 320 }} opts={{ renderer: 'svg' }} />
         </div>
@@ -107,7 +107,7 @@ export default function AnalyticsPage() {
               <h3 className="text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>Machine Utilization</h3>
               <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>Running vs Idle vs Downtime percentage</p>
             </div>
-            <Cpu className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
+            <Cpu className="w-5 h-5" style={{ color: 'var(--text-tertiary)' }} />
           </div>
           <ReactECharts option={utilizationOption} style={{ height: 320 }} opts={{ renderer: 'svg' }} />
         </div>

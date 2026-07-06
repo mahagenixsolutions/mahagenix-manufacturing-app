@@ -32,17 +32,17 @@ interface SearchResult {
 }
 
 const pageResults: SearchResult[] = [
-  { id: 'page-dashboard', label: 'Dashboard', description: 'Factory command center', category: 'Pages', icon: <LayoutDashboard className="w-4 h-4" />, path: '/' },
-  { id: 'page-production', label: 'Production', description: 'Production schedule & queue', category: 'Pages', icon: <Factory className="w-4 h-4" />, path: '/production' },
-  { id: 'page-machines', label: 'Machines', description: 'Machine monitoring', category: 'Pages', icon: <Cpu className="w-4 h-4" />, path: '/machines' },
-  { id: 'page-work-orders', label: 'Work Orders', description: 'Manage work orders', category: 'Pages', icon: <ClipboardList className="w-4 h-4" />, path: '/work-orders' },
-  { id: 'page-quality', label: 'Quality Control', description: 'Inspection dashboard', category: 'Pages', icon: <ShieldCheck className="w-4 h-4" />, path: '/quality' },
-  { id: 'page-inventory', label: 'Inventory', description: 'Warehouse management', category: 'Pages', icon: <Warehouse className="w-4 h-4" />, path: '/inventory' },
-  { id: 'page-maintenance', label: 'Maintenance', description: 'Machine health & service', category: 'Pages', icon: <Wrench className="w-4 h-4" />, path: '/maintenance' },
-  { id: 'page-employees', label: 'Employees', description: 'Workforce management', category: 'Pages', icon: <Users className="w-4 h-4" />, path: '/employees' },
-  { id: 'page-analytics', label: 'Analytics', description: 'Production analytics', category: 'Pages', icon: <BarChart3 className="w-4 h-4" />, path: '/analytics' },
-  { id: 'page-reports', label: 'Reports', description: 'Generate reports', category: 'Pages', icon: <FileText className="w-4 h-4" />, path: '/reports' },
-  { id: 'page-settings', label: 'Settings', description: 'System settings', category: 'Pages', icon: <Settings className="w-4 h-4" />, path: '/settings' },
+  { id: 'page-dashboard', label: 'Dashboard', description: 'Factory command center', category: 'Pages', icon: <LayoutDashboard className="w-5 h-5" />, path: '/' },
+  { id: 'page-production', label: 'Production', description: 'Production schedule & queue', category: 'Pages', icon: <Factory className="w-5 h-5" />, path: '/production' },
+  { id: 'page-machines', label: 'Machines', description: 'Machine monitoring', category: 'Pages', icon: <Cpu className="w-5 h-5" />, path: '/machines' },
+  { id: 'page-work-orders', label: 'Work Orders', description: 'Manage work orders', category: 'Pages', icon: <ClipboardList className="w-5 h-5" />, path: '/work-orders' },
+  { id: 'page-quality', label: 'Quality Control', description: 'Inspection dashboard', category: 'Pages', icon: <ShieldCheck className="w-5 h-5" />, path: '/quality' },
+  { id: 'page-inventory', label: 'Inventory', description: 'Warehouse management', category: 'Pages', icon: <Warehouse className="w-5 h-5" />, path: '/inventory' },
+  { id: 'page-maintenance', label: 'Maintenance', description: 'Machine health & service', category: 'Pages', icon: <Wrench className="w-5 h-5" />, path: '/maintenance' },
+  { id: 'page-employees', label: 'Employees', description: 'Workforce management', category: 'Pages', icon: <Users className="w-5 h-5" />, path: '/employees' },
+  { id: 'page-analytics', label: 'Analytics', description: 'Production analytics', category: 'Pages', icon: <BarChart3 className="w-5 h-5" />, path: '/analytics' },
+  { id: 'page-reports', label: 'Reports', description: 'Generate reports', category: 'Pages', icon: <FileText className="w-5 h-5" />, path: '/reports' },
+  { id: 'page-settings', label: 'Settings', description: 'System settings', category: 'Pages', icon: <Settings className="w-5 h-5" />, path: '/settings' },
 ];
 
 export default function CommandPalette() {
@@ -59,7 +59,7 @@ export default function CommandPalette() {
       label: `${m.id} — ${m.name}`,
       description: `${m.type} · ${m.line} · ${m.status}`,
       category: 'Machines',
-      icon: <Cpu className="w-4 h-4" />,
+      icon: <Cpu className="w-5 h-5" />,
       path: '/machines',
     }));
 
@@ -68,7 +68,7 @@ export default function CommandPalette() {
       label: e.name,
       description: `${e.role} · ${e.department} · ${e.shift} shift`,
       category: 'Employees',
-      icon: <Users className="w-4 h-4" />,
+      icon: <Users className="w-5 h-5" />,
       path: '/employees',
     }));
 
@@ -77,7 +77,7 @@ export default function CommandPalette() {
       label: `${wo.id} — ${wo.product}`,
       description: `${wo.status} · ${wo.line} · ${wo.priority} priority`,
       category: 'Work Orders',
-      icon: <ClipboardList className="w-4 h-4" />,
+      icon: <ClipboardList className="w-5 h-5" />,
       path: '/work-orders',
     }));
 
@@ -86,7 +86,7 @@ export default function CommandPalette() {
       label: `${i.sku} — ${i.name}`,
       description: `${i.currentStock} ${i.unit} · ${i.status}`,
       category: 'Inventory',
-      icon: <Warehouse className="w-4 h-4" />,
+      icon: <Warehouse className="w-5 h-5" />,
       path: '/inventory',
     }));
 

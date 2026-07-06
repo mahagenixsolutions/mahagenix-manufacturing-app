@@ -67,8 +67,8 @@ export default function QualityPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Quality Control</h1>
-        <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>Inspection dashboard & defect tracking</p>
+        <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Quality Control</h1>
+        <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>Inspection dashboard & defect tracking</p>
       </div>
 
       {/* KPI Row */}
@@ -82,12 +82,12 @@ export default function QualityPage() {
         ].map((kpi) => (
           <div key={kpi.label} className="card-elevated p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${kpi.color}15` }}>
-                <kpi.icon className="w-4 h-4" style={{ color: kpi.color }} />
+              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center transition-all" style={{ background: `${kpi.color}15` }}>
+                <kpi.icon className="w-5 h-5 lg:w-5 lg:h-5 transition-all" style={{ color: kpi.color }} />
               </div>
             </div>
-            <p className="text-[10px] font-medium" style={{ color: 'var(--text-tertiary)' }}>{kpi.label}</p>
-            <p className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{kpi.value}</p>
+            <p className="text-[10px] lg:text-[12px] font-medium transition-all" style={{ color: 'var(--text-tertiary)' }}>{kpi.label}</p>
+            <p className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>{kpi.value}</p>
           </div>
         ))}
       </div>
@@ -115,47 +115,49 @@ export default function QualityPage() {
           </div>
           <div className="relative">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style={{ color: 'var(--text-tertiary)' }} />
-            <input type="text" placeholder="Search..." className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] w-48" style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }} />
+            <input type="text" placeholder="Search..." className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] w-48 shrink-0 min-w-[140px]" style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }} />
           </div>
         </div>
-        <table className="enterprise-table">
-          <thead>
-            <tr>
-              <th>Inspection ID</th>
-              <th>Work Order</th>
-              <th>Product</th>
-              <th>Inspector</th>
-              <th>Status</th>
-              <th>Defects</th>
-              <th>Pass Rate</th>
-              <th>Batch/Sample</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {qualityInspections.map((qi) => (
-              <tr key={qi.id} className="cursor-pointer">
-                <td><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{qi.id}</span></td>
-                <td><span className="font-mono text-[12px]">{qi.workOrder}</span></td>
-                <td className="text-[12px] font-medium">{qi.product}</td>
-                <td className="text-[12px]">{qi.inspector}</td>
-                <td><StatusBadge status={qi.status} /></td>
-                <td>
-                  <span className={`text-[12px] font-bold ${qi.defectsFound > 0 ? 'text-danger-600' : 'text-success-600'}`}>
-                    {qi.defectsFound}
-                  </span>
-                </td>
-                <td>
-                  <span className={`text-[12px] font-bold ${qi.passRate === 0 ? '' : qi.passRate >= 98 ? 'text-success-600' : qi.passRate >= 95 ? 'text-warning-600' : 'text-danger-600'}`}>
-                    {qi.passRate > 0 ? `${qi.passRate}%` : '—'}
-                  </span>
-                </td>
-                <td className="text-[12px] font-mono">{qi.batchSize}/{qi.sampleSize}</td>
-                <td className="text-[12px] font-mono">{qi.inspectionDate}</td>
+        <div className="table-container">
+          <table className="enterprise-table">
+            <thead>
+              <tr>
+                <th>Inspection ID</th>
+                <th>Work Order</th>
+                <th>Product</th>
+                <th>Inspector</th>
+                <th>Status</th>
+                <th>Defects</th>
+                <th>Pass Rate</th>
+                <th>Batch/Sample</th>
+                <th>Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {qualityInspections.map((qi) => (
+                <tr key={qi.id} className="cursor-pointer">
+                  <td data-label="Inspection ID"><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{qi.id}</span></td>
+                  <td data-label="Work Order"><span className="font-mono text-[12px]">{qi.workOrder}</span></td>
+                  <td data-label="Product" className="text-[12px] font-medium">{qi.product}</td>
+                  <td data-label="Inspector" className="text-[12px]">{qi.inspector}</td>
+                  <td data-label="Status"><StatusBadge status={qi.status} /></td>
+                  <td data-label="Defects">
+                    <span className={`text-[12px] font-bold ${qi.defectsFound > 0 ? 'text-danger-600' : 'text-success-600'}`}>
+                      {qi.defectsFound}
+                    </span>
+                  </td>
+                  <td data-label="Pass Rate">
+                    <span className={`text-[12px] font-bold ${qi.passRate === 0 ? '' : qi.passRate >= 98 ? 'text-success-600' : qi.passRate >= 95 ? 'text-warning-600' : 'text-danger-600'}`}>
+                      {qi.passRate > 0 ? `${qi.passRate}%` : '—'}
+                    </span>
+                  </td>
+                  <td data-label="Batch/Sample" className="text-[12px] font-mono">{qi.batchSize}/{qi.sampleSize}</td>
+                  <td data-label="Date" className="text-[12px] font-mono">{qi.inspectionDate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

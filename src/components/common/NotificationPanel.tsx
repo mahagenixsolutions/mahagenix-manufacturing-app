@@ -15,11 +15,11 @@ import {
 import { formatDistanceToNow } from 'date-fns';
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  critical: <AlertTriangle className="w-4 h-4 text-danger-500" />,
-  production: <Factory className="w-4 h-4 text-primary-500" />,
-  maintenance: <Wrench className="w-4 h-4 text-warning-500" />,
-  inventory: <Warehouse className="w-4 h-4 text-primary-500" />,
-  quality: <ShieldCheck className="w-4 h-4 text-success-500" />,
+  critical: <AlertTriangle className="w-5 h-5 text-danger-500" />,
+  production: <Factory className="w-5 h-5 text-primary-500" />,
+  maintenance: <Wrench className="w-5 h-5 text-warning-500" />,
+  inventory: <Warehouse className="w-5 h-5 text-primary-500" />,
+  quality: <ShieldCheck className="w-5 h-5 text-success-500" />,
 };
 
 export default function NotificationPanel() {
@@ -80,7 +80,7 @@ export default function NotificationPanel() {
               className="p-1.5 rounded-lg transition-colors cursor-pointer"
               style={{ color: 'var(--text-tertiary)' }}
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
         </div>

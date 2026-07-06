@@ -82,7 +82,7 @@ export default function EmployeeDetailSheet({ employeeId, open, onOpenChange }: 
                     : 'border-transparent text-secondary hover:text-primary'
                 }`}
               >
-                <tab.icon className="w-4 h-4" />
+                <tab.icon className="w-5 h-5" />
                 {tab.label}
               </button>
             ))}
@@ -95,19 +95,19 @@ export default function EmployeeDetailSheet({ employeeId, open, onOpenChange }: 
                 {/* Contact Info */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-3 text-[13px] text-secondary">
-                    <Mail className="w-4 h-4 text-tertiary" />
+                    <Mail className="w-5 h-5 text-tertiary" />
                     {employee.email}
                   </div>
                   <div className="flex items-center gap-3 text-[13px] text-secondary">
-                    <Phone className="w-4 h-4 text-tertiary" />
+                    <Phone className="w-5 h-5 text-tertiary" />
                     {employee.phone}
                   </div>
                   <div className="flex items-center gap-3 text-[13px] text-secondary">
-                    <Calendar className="w-4 h-4 text-tertiary" />
+                    <Calendar className="w-5 h-5 text-tertiary" />
                     Joined {new Date(employee.joinDate).toLocaleDateString()}
                   </div>
                   <div className="flex items-center gap-3 text-[13px] text-secondary">
-                    <Clock className="w-4 h-4 text-tertiary" />
+                    <Clock className="w-5 h-5 text-tertiary" />
                     Shift: <span className="capitalize font-medium text-primary">{employee.shift}</span>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function EmployeeDetailSheet({ employeeId, open, onOpenChange }: 
                   {logs.map((log, i) => (
                     <div key={log.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
                       <div className="flex items-center justify-center w-6 h-6 rounded-full border-4 border-surface bg-primary-100 text-primary-600 absolute left-0 md:left-1/2 -translate-x-1/2 -ml-3 md:ml-0 z-10 shadow">
-                        <CheckCircle className="w-3 h-3" />
+                        <CheckCircle className="w-4 h-4" />
                       </div>
                       <div className="w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] p-4 rounded-xl border border-subtle bg-surface shadow-sm">
                         <div className="flex items-center justify-between mb-1">

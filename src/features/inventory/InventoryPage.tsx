@@ -46,8 +46,8 @@ export default function InventoryPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Inventory</h1>
-          <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+          <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Inventory</h1>
+          <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>
             Warehouse dashboard & stock tracking
           </p>
         </div>
@@ -71,12 +71,12 @@ export default function InventoryPage() {
         ].map((kpi) => (
           <div key={kpi.label} className="card-elevated p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${kpi.color}15` }}>
-                <kpi.icon className="w-4 h-4" style={{ color: kpi.color }} />
+              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center transition-all" style={{ background: `${kpi.color}15` }}>
+                <kpi.icon className="w-5 h-5 lg:w-5 lg:h-5 transition-all" style={{ color: kpi.color }} />
               </div>
             </div>
-            <p className="text-[10px] font-medium" style={{ color: 'var(--text-tertiary)' }}>{kpi.label}</p>
-            <p className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{kpi.value}</p>
+            <p className="text-[10px] lg:text-[12px] font-medium transition-all" style={{ color: 'var(--text-tertiary)' }}>{kpi.label}</p>
+            <p className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>{kpi.value}</p>
           </div>
         ))}
       </div>
@@ -90,7 +90,7 @@ export default function InventoryPage() {
             placeholder="Search SKU or name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] w-56"
+            className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] w-56 shrink-0 min-w-[160px]"
             style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
           />
         </div>
@@ -100,7 +100,7 @@ export default function InventoryPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="pl-8 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none"
+            className="pl-10 pr-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none shrink-0 min-w-[130px]"
             style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
           >
             <option value="all">All Status</option>
@@ -114,7 +114,7 @@ export default function InventoryPage() {
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="px-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none"
+          className="px-3 py-1.5 rounded-lg border text-[12px] cursor-pointer appearance-none shrink-0 min-w-[130px]"
           style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
         >
           <option value="all">All Categories</option>
@@ -130,7 +130,7 @@ export default function InventoryPage() {
 
       {/* Table */}
       <div className="card-elevated overflow-hidden">
-        <div className="overflow-x-auto">
+        <div className="table-container">
           <table className="enterprise-table">
             <thead>
               <tr>
@@ -149,11 +149,11 @@ export default function InventoryPage() {
             <tbody>
               {filtered.map((item) => (
                 <tr key={item.sku} className="cursor-pointer">
-                  <td><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{item.sku}</span></td>
-                  <td><span className="font-medium text-[12px]">{item.name}</span></td>
-                  <td className="text-[12px]">{item.category}</td>
-                  <td><StatusBadge status={item.status as any} /></td>
-                  <td>
+                  <td data-label="SKU"><span className="font-mono font-bold text-[12px]" style={{ color: 'var(--color-primary-600)' }}>{item.sku}</span></td>
+                  <td data-label="Name"><span className="font-medium text-[12px]">{item.name}</span></td>
+                  <td data-label="Category" className="text-[12px]">{item.category}</td>
+                  <td data-label="Status"><StatusBadge status={item.status as any} /></td>
+                  <td data-label="Current Stock">
                     <div className="flex items-center gap-2">
                       <div className="w-16 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-surface-secondary)' }}>
                         <div
@@ -169,13 +169,13 @@ export default function InventoryPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="text-[12px] font-mono" style={{ color: 'var(--text-secondary)' }}>
+                  <td data-label="Min/Max" className="text-[12px] font-mono" style={{ color: 'var(--text-secondary)' }}>
                     {item.minStock.toLocaleString()} / {item.maxStock.toLocaleString()}
                   </td>
-                  <td className="text-[12px]">{item.location}</td>
-                  <td className="text-[12px]">{item.supplier}</td>
-                  <td className="text-[12px] font-mono">{item.lastRestocked}</td>
-                  <td><ChevronRight className="w-4 h-4" style={{ color: 'var(--text-tertiary)' }} /></td>
+                  <td data-label="Location" className="text-[12px]">{item.location}</td>
+                  <td data-label="Supplier" className="text-[12px]">{item.supplier}</td>
+                  <td data-label="Last Restocked" className="text-[12px] font-mono">{item.lastRestocked}</td>
+                  <td data-label="Action"><ChevronRight className="w-5 h-5" style={{ color: 'var(--text-tertiary)' }} /></td>
                 </tr>
               ))}
             </tbody>

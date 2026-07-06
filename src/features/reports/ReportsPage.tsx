@@ -28,8 +28,8 @@ export default function ReportsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Reports Hub</h1>
-          <p className="text-[13px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+          <h1 className="text-xl lg:text-2xl font-bold transition-all" style={{ color: 'var(--text-primary)' }}>Reports Hub</h1>
+          <p className="text-[13px] lg:text-[14px] mt-0.5 transition-all" style={{ color: 'var(--text-tertiary)' }}>
             Generate, schedule, and export factory reports
           </p>
         </div>
@@ -40,7 +40,7 @@ export default function ReportsPage() {
         <div className="xl:col-span-2 space-y-6">
           <div className="card-elevated p-6">
             <h2 className="text-[15px] font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-              <Filter className="w-4 h-4 text-primary-500" /> Report Builder
+              <Filter className="w-5 h-5 text-primary-500" /> Report Builder
             </h2>
 
             <div className="space-y-5">
@@ -68,13 +68,13 @@ export default function ReportsPage() {
               {/* Date Range */}
               <div>
                 <label className="block text-[12px] font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>Date Range</label>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <div className="relative flex-1">
-                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
+                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-tertiary)' }} />
                     <input type="date" className="w-full pl-10 pr-3 py-2 border rounded-lg text-[13px]" style={{ borderColor: 'var(--border-default)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }} />
                   </div>
                   <div className="relative flex-1">
-                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-tertiary)' }} />
+                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-tertiary)' }} />
                     <input type="date" className="w-full pl-10 pr-3 py-2 border rounded-lg text-[13px]" style={{ borderColor: 'var(--border-default)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }} />
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export default function ReportsPage() {
                 <div className="grid grid-cols-2 gap-3">
                   {['Overview Summary', 'Line-by-Line Breakdown', 'Machine Level Metrics', 'Operator Statistics', 'Defect Analysis', 'Downtime Log'].map(dp => (
                     <label key={dp} className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-[var(--bg-surface-secondary)] transition-colors" style={{ borderColor: 'var(--border-default)' }}>
-                      <input type="checkbox" className="w-4 h-4 rounded text-primary-600" defaultChecked />
+                      <input type="checkbox" className="w-5 h-5 rounded text-primary-600" defaultChecked />
                       <span className="text-[13px]" style={{ color: 'var(--text-primary)' }}>{dp}</span>
                     </label>
                   ))}
@@ -98,7 +98,7 @@ export default function ReportsPage() {
                   Preview
                 </button>
                 <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-medium text-white bg-primary-600">
-                  <Download className="w-4 h-4" /> Generate Report
+                  <Download className="w-5 h-5" /> Generate Report
                 </button>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function ReportsPage() {
           <div className="card-elevated p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-[15px] font-bold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-                <FileText className="w-4 h-4 text-primary-500" /> Saved Reports
+                <FileText className="w-5 h-5 text-primary-500" /> Saved Reports
               </h2>
             </div>
             
@@ -129,7 +129,7 @@ export default function ReportsPage() {
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-[11px]" style={{ color: 'var(--text-tertiary)' }}>
-                    <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {report.frequency}</span>
+                    <span className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {report.frequency}</span>
                     <span>Last: {report.lastRun}</span>
                   </div>
                 </div>
